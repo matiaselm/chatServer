@@ -1,0 +1,85 @@
+3. Implement ChatConnector  >>>DONE<<<
+
+    Implement a ChatConnector that reads user input and creates an object of
+    ChatMessage type. Your application should have a main() method where you
+    create an instance of the ChatConnector and execute its run method.
+
+fun main(args: Array<String>) {
+    val chatConnector = ChatConnector(System.`in`, System.out)
+chatConnector.run()
+}
+
+
+4. Implement history using Kotlin object  >>>DONE<<<
+
+Use Kotlin object to create ChatHistory singleton. Implement in that object
+public methods:
+- fun insert(message: ChatMessage) : insert a new message (of class
+ChatMessage [that you need to create, too])
+- override fun toString(): String : return the whole chat history as
+a nicely formatted string
+
+ChatMessage objects need to have instance variables to support the features
+visible in the example run log. A constructor and toString() method are
+needed, think twice before introducing more methods. ChatHistory will need an
+instance variable of a suitable collection type to store all messages.
+
+
+5. Implement ChatServer class  >>>DONE<<<
+
+Implement ChatServer class that has a method serve(), which
+    - Listens to incoming connection requests using accept()
+    - Starts a new ChatConnector thread for each connection
+Your main() method should look like this:
+
+fun main(args Array<String>) {
+    ChatServer().serve()
+}
+
+
+6. Make ChatHistory observable and  >>>DONE<<<
+
+ChatConnector observer
+When new message arrives, it would be added to chatHistory. ChatHistory would
+call all of its observers. ChatConnector instances would output the message to
+PrintStream.
+
+
+7. Implement Users  >>>DONE<<<
+
+Implement singleton Users with Kotlin object that has methods for
+- Inserting and removing username
+- Checking if the username exists already
+- toString() that returns the userlist as a nicely formatted string
+(Use HashSet instance for storing the usernames internally in Users class.)
+
+
+8. TODO--- Implement support for json messages
+
+Add @serializable to your ChatMessage -class. Parse all incoming messages into
+objects of ChatMessage type. Test your server with valid and invalid json
+messages. Connect multiple terminal sessions to see that messages gets spread
+to all chat participants.
+
+
+9. Implement command interpretation to ChatConnector  >>>DONE<<<
+
+Write business logic to chat connector to support the required command set.
+Consider also exceptions like wrong command etc.
+
+
+10. Implement ChatConsole  >>>DONE<<<
+
+Implement ChatConsole, which
+- Registers as an observer to ChatHistory
+- Prints out to System.out all chat messages in the conversation
+
+
+11. Implement TopChatter   >>>DONE<<<
+
+Implement TopChatter, which
+- Registers as an observer to ChatHistory
+- Writes to console list of active users including the number of messages sent
+every time the list changes
+- Challenge: modify the code so that it prints a list of four top chatters order by
+the number of messages they have sent
